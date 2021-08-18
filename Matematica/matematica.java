@@ -1,4 +1,4 @@
-public class Matematica implements InterfaceMatematica {
+public class matematica implements InterfaceMatematica {
 	
 	public float soma(float n1, float n2){
 		
@@ -24,14 +24,15 @@ public class Matematica implements InterfaceMatematica {
 		double res =(Math.sqrt(num));
 		return res;
 	}
+	@Override
+	public float somar(float n1, float n2) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	@Override
+	public double raiz(float numero) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
-}
-
-interface Matematica {
-	
-	float somar (float n1,float n2);
-	float somar (float n1,float n2);
-	float somar (float n1,float n2);
-	float somar (float n1,float n2);
-	double raiz (float numero);
 }
