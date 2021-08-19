@@ -9,7 +9,7 @@ public class Principal {
 		
 //		List<Cliente> lstClientes = Cliente.lerTodos();
 //		System.out.println(lstClientes.size());	
-//		for (Cliente c : lstClientes) {
+//	 	for (Cliente c : lstClientes) {
 //			System.out.println("Nome: " + c.getNome() + " CPF: " +c.getCpf());
 //		}
 		
