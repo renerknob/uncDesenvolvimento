@@ -14,7 +14,7 @@ public class MegaSena {
 	public static void main(String a[]) {
 //		String texto = " texto qualquer";
 //		System.out.printf("O Numero de apostas para acertar na megasena é: %2f",
-//		,	fatorial(60) / (fatorial(6) * fatorial(54)));
+//			fatorial(60) / (fatorial(6) * fatorial(54)));
 		
 		
 		Scanner scan = new Scanner(System.in);
