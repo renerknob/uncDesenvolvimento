@@ -5,20 +5,25 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Funcionario extends Pessoa{
-		
+public class Funcionario extends Pessoa implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
+	
+	public static final String ARQUIVO_SERIALIZACAO = "C:/DesenvolvimentoSoft/uncDesenvolvimento/Farmacia/database/Funcionario.obj";	
 	public static final String ARQUIVO = "C:/DesenvolvimentoSoft/uncDesenvolvimento/Farmacia/database/Funcionario.csv";
 		private String pis;
 		private String pasep;
 		private String carteiraTrabalho;
 		private Double salario;
+
+
 		
-		public Funcionario() {
-		}
+		public Funcionario() {}
 
 		public Funcionario(String a[]) { 
 			super(a[0],a[1],a[2],a[3]); 
@@ -70,6 +75,7 @@ public class Funcionario extends Pessoa{
 			return super.toString() + ":" + getPis() + ":" + getPasep() + ";" + getCarteiraTrabalho() + ";" + getSalario() + "\n";
 		}
 		
+			
 		public static List<Funcionario> lerLista() {
 			File f = new File(ARQUIVO);
 			FileInputStream fis;
@@ -91,6 +97,13 @@ public class Funcionario extends Pessoa{
 				System.out.println("Erro de gravacao");
 			}
 			return lstFuncionario;
+		}
+		
+		public static void serialize() throws IOException, FileNotFoundException {
+			List<Funcionario> funcListCsv = Funcionario.lerLista();
+			System.out.println("Funcionários pegos do csv.");
+			File f = new File(Funcionario.ARQUIVO_SERIALIZACAO);
+		
 		}
 }
 

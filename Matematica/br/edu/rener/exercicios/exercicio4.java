@@ -12,5 +12,4 @@ public class exercicio4 {
 		int soma = num1+num2+num3;
 		System.out.printf("A média aritmética é %s",soma/3);
 	}
-
 }

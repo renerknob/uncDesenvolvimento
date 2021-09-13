@@ -5,13 +5,19 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Cliente extends Pessoa {
+import br.unc.rener.utils.EntidadeGenerica;
+
+public class Cliente extends Pessoa implements Serializable {
 	
 	public static final String ARQUIVO = "C:/DesenvolvimentoSoft/uncDesenvolvimento/Farmacia/database/Cliente.csv";
+	public static final String ARQUIVO_SERIAL = "C:/DesenvolvimentoSoft/uncDesenvolvimento/Farmacia/database/Cliente.obj";
+
+	
 	private String telefone;
 	
 	public Cliente () {}
@@ -72,8 +78,13 @@ public class Cliente extends Pessoa {
 		}
 		return lstClientes;
 	}
+	
+	public String imprimir() {
+		return super.toString() + ";" + this.telefone +"\n";
+	}
 	@Override
 	public String toString() {
-		return super.toString() + ";" + this.telefone +"\n";
-	}		
+		return String.format("Nome %s\nCPF: %s\nRG: %s\nFone: %s\nEndereco: %s\n ********************\n", 
+				getNome(), getCpf(), getRg(), getTelefone(), getEndereco()) ;
+	}
 }
