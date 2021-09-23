@@ -12,8 +12,9 @@ import java.util.Scanner;
 
 import br.unc.rener.utils.EntidadeGenerica;
 
-public class Cliente extends Pessoa implements Serializable {
+public class Cliente extends Pessoa implements Serializable, Comparable <Object> {
 	
+	public static final long serialVersionUID = 2L;
 	public static final String ARQUIVO = "C:/DesenvolvimentoSoft/uncDesenvolvimento/Farmacia/database/Cliente.csv";
 	public static final String ARQUIVO_SERIAL = "C:/DesenvolvimentoSoft/uncDesenvolvimento/Farmacia/database/Cliente.obj";
 
@@ -82,9 +83,19 @@ public class Cliente extends Pessoa implements Serializable {
 	public String imprimir() {
 		return super.toString() + ";" + this.telefone +"\n";
 	}
+	
 	@Override
 	public String toString() {
 		return String.format("Nome %s\nCPF: %s\nRG: %s\nFone: %s\nEndereco: %s\n ********************\n", 
 				getNome(), getCpf(), getRg(), getTelefone(), getEndereco()) ;
 	}
+	
+	@Override
+	public int compareTo(Object o) {
+		Cliente e = (Cliente) o;
+	
+		return this.getNome().compareTo(e.getNome());
+	
+	}
 }
+

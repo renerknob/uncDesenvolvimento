@@ -13,8 +13,7 @@ public class LeituraObjectSerializado {
 		File arquivo = new File(Funcionario.ARQUIVO_SERIALIZACAO);
 		FileInputStream fis = new FileInputStream(arquivo);
 		ObjectInputStream ois = new ObjectInputStream(fis);
-		Object obj = ois.readObject();
-		Funcionario funcDeserializado = (Funcionario) obj;
+		Funcionario funcDeserializado = (Funcionario) ois.readObject();
 		System.out.println(funcDeserializado);
 	}
 }

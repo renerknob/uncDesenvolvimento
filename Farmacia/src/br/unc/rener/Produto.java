@@ -1,6 +1,6 @@
 package br.unc.rener;
 
-public class Produto extends CategoriaProduto {
+public class Produto {
 	
 	private String codBarra;
 	private String lote;

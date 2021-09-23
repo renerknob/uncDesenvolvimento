@@ -18,13 +18,13 @@ public class EntidadeGenerica implements InterfaceSerializacaoGenerica{
 	@Override
 	public <E> boolean salvarEntidade(E elemento, String strArquivo) {
 		
-		List<E> lstGenerica = lerLista(strArquivo);
+		List<E> lstGenerica = (List<E>) lerLista(strArquivo);
 		lstGenerica.add(elemento);
 		return salvarLista(lstGenerica, strArquivo);
 	}
 	
 	@Override
-	public <E> List<E> lerLista(String strArquivo){
+	public <E extends Comparable<E>> List<E> lerLista(String strArquivo){
 		try {
 			File arquivo = new File(strArquivo);
 			FileInputStream fis = new FileInputStream(arquivo);
@@ -50,7 +50,7 @@ public class EntidadeGenerica implements InterfaceSerializacaoGenerica{
 			List<E> lst = new ArrayList<E>();
 			oos.writeObject(lst);
 			System.out.printf("lista vazia persistida");
-			return lerLista(strArquivo);
+			return (List<E>) lerLista(strArquivo);
 		} catch (FileNotFoundException e1) {
 			e1.printStackTrace();
 		} catch (IOException e1) {
@@ -79,7 +79,7 @@ public class EntidadeGenerica implements InterfaceSerializacaoGenerica{
 	
 	public <E> void imprimirLista(String strArquivo) {
 		
-		List<E> lista = lerLista(strArquivo);
+		List<E> lista = (List<E>) lerLista(strArquivo);
 		for (E obj : lista) {
 			System.out.println(obj);
 		}

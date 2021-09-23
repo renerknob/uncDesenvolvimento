@@ -10,9 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Funcionario extends Pessoa implements Serializable{
+public class Funcionario extends Pessoa implements Serializable, Comparable<Object>{
 	
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 2L;
 	
 	public static final String ARQUIVO_SERIALIZACAO = "C:/DesenvolvimentoSoft/uncDesenvolvimento/Farmacia/database/Funcionario.obj";	
 	public static final String ARQUIVO = "C:/DesenvolvimentoSoft/uncDesenvolvimento/Farmacia/database/Funcionario.csv";
@@ -23,7 +23,23 @@ public class Funcionario extends Pessoa implements Serializable{
 
 
 		
-		public Funcionario() {}
+		public Funcionario() {};
+		
+		@Override
+		public int compareTo(Object o) {
+			Cliente e = (Cliente) o;
+		
+			return this.getNome().compareTo(e.getNome());
+		
+		}
+		
+		public Funcionario(String nome, String cpf, String rg, String endereco, String pis, String pasep, String carteiraTrabalho, Double salario) {
+			super(nome, cpf, rg, endereco);
+			this.pis=pis;
+			this.pasep=pasep;
+			this.carteiraTrabalho=carteiraTrabalho;	 
+			this.salario=salario;
+		}
 
 		public Funcionario(String a[]) { 
 			super(a[0],a[1],a[2],a[3]); 

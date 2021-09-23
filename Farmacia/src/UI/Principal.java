@@ -121,6 +121,14 @@ public class Principal {
 		Funcionario f = new Funcionario();
 		
 		System.out.println("CADASTRO FUNCIONARIO\n\n");
+		System.out.printf("Digite o Nome:  \n");
+		f.setNome(scan.nextLine());
+		System.out.printf("Digite o CPF:  \n");
+		f.setCpf(scan.nextLine());
+		System.out.printf("Digite o RG:  \n");
+		f.setRg(scan.nextLine());
+		System.out.printf("Digite o Endereço:  \n");
+		f.setEndereco(scan.nextLine());
 		System.out.printf("Digite o pis:  \n");
 		f.setPis(scan.nextLine());
 		System.out.printf("Digite o pasep:  \n");
