@@ -13,6 +13,7 @@ import java.util.Scanner;
 
 import br.unc.rener.Cliente;
 import br.unc.rener.Funcionario;
+import br.unc.rener.dao.ClienteDao;
 import br.unc.rener.utils.EntidadeGenerica;
 
 public class Principal {
@@ -103,8 +104,11 @@ public class Principal {
 		System.out.printf("Digite o Endereço:  \n");
 		c.setEndereco(scan.nextLine());
 		
-		EntidadeGenerica entidade = new EntidadeGenerica();
-		entidade.salvarEntidade(c, Cliente.ARQUIVO_SERIAL);
+	//	EntidadeGenerica entidade = new EntidadeGenerica();
+	//	entidade.salvarEntidade(c, Cliente.ARQUIVO_SERIAL);
+		
+		ClienteDao clienteDao = new ClienteDao();
+		clienteDao.inserir(c);
 		
 		try {
 			Thread.sleep(2000);
@@ -138,8 +142,11 @@ public class Principal {
 		System.out.printf("Digite o salário:  \n");
 		f.setSalario(scan.nextDouble());
 		
-		EntidadeGenerica entidade = new EntidadeGenerica();
-		entidade.salvarEntidade(f, Funcionario.ARQUIVO_SERIALIZACAO);
+	//	EntidadeGenerica entidade = new EntidadeGenerica();
+	//	entidade.salvarEntidade(f, Funcionario.ARQUIVO_SERIALIZACAO);
+		
+	//	ClienteDao clienteDao = new ClienteDao();
+	//	clienteDao.inserir(c);
 		
 		try {
 			Thread.sleep(2000);
