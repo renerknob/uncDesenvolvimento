@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -57,57 +58,58 @@ public class ClienteDao {
 			return listaClientes;
 		}
 
-//		public boolean alterar(Cliente cliente) {
-//			String sql = "UPDATE cliente SET id=?, nome=?, rg=?, cpf=?, telefone=?  WHERE id=?";
-//			try {
-//				PreparedStatement stmt = connection.prepareStatement(sql);
-//				stmt.setInt(1, cliente.getId());
-//				stmt.setString(2, cliente.getNome());
-//				stmt.setInt(3, cliente.getRg());
-//				stmt.setInt(7, cliente.getTelefone());
+	public boolean alterar(Cliente cliente) {
+			String sql = "UPDATE cliente SET nome=?, rg=?, cpf=?, telefone=?, endereco=?  WHERE id=?";
+			try {
+				PreparedStatement stmt = connection.prepareStatement(sql);
+				stmt.setString(1, cliente.getNome());
+				stmt.setString(2, cliente.getRg());
+				stmt.setString(3, cliente.getCpf());
+				stmt.setString(4, cliente.getTelefone());
+				stmt.setString(5, cliente.getEndereco());
+				stmt.setInt(6, cliente.getId());
+				stmt.execute();
+				return true;
+		} catch (SQLException ex) {
+				Logger.getLogger(ClienteDao.class.getName()).log(Level.SEVERE, null, ex);
+			return false;
+			}
+		}
 
-//				stmt.execute();
-//				return true;
-//			} catch (SQLException ex) {
-//				Logger.getLogger(ClienteDao.class.getName()).log(Level.SEVERE, null, ex);
-//				return false;
-//			}
-//		}
-	//
 
-	//
-//		public boolean remover(Cliente cliente) {
-//			String sql = "DELETE FROM cliente WHERE id_cliente=?";
-//			try {
-//				PreparedStatement stmt = connection.prepareStatement(sql);
-//				stmt.setInt(1, cliente.getId());
-//				stmt.execute();
-//				return true;
-//			} catch (SQLException ex) {
-//				Logger.getLogger(ClienteDao.class.getName()).log(Level.SEVERE, null, ex);
-//				return false;
-//			}
-//		}
-	//
-//		public Cliente buscar(Cliente cliente) {
-//			String sql = "SELECT * FROM cliente WHERE id_cliente=?";
-//			Cliente retorno = new Cliente(sql, 0, 0, sql, LocalDate.MIN, 0, sql);
-//			try {
-//				PreparedStatement stmt = connection.prepareStatement(sql);
-//				stmt.setInt(1, cliente.getId());
-//				ResultSet resultado = stmt.executeQuery();
-//				if (resultado.next()) {
-//					cliente.setId(resultado.getInt("id_cliente"));
-//					cliente.setNome(resultado.getString("nome_cliente"));
-//					cliente.setRg(resultado.getInt("rg_cliente"));
-//					cliente.setCpf(resultado.getInt("cpf_cliente"));
-		// cliente.setTelefone(resultado.getInt("telefone_cliente"));
-	//
-//					retorno = cliente;
-//				}
-//			} catch (SQLException ex) {
-//				Logger.getLogger(ClienteDao.class.getName()).log(Level.SEVERE, null, ex);
-//			}
-//			return retorno;
-//		}
+
+		public boolean remover(Cliente cliente) {
+		String sql = "DELETE FROM cliente WHERE id=?";
+		try {
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			stmt.setInt(1, cliente.getId());
+			stmt.execute();
+			return true;
+		} catch (SQLException ex) {
+			Logger.getLogger(ClienteDao.class.getName()).log(Level.SEVERE, null, ex);
+			return false;
+		}	
+}
+
+		public Cliente buscar(Integer id) {
+			String sql = "SELECT * FROM cliente WHERE id=?";
+			try {
+				PreparedStatement stmt = connection.prepareStatement(sql);
+				stmt.setInt(1, id);
+				ResultSet resultado = stmt.executeQuery();
+				Cliente cliente = new Cliente();
+				if (resultado.next()) {
+					cliente.setId(resultado.getInt("id"));
+					cliente.setNome(resultado.getString("nome"));
+					cliente.setRg(resultado.getString("rg"));
+					cliente.setCpf(resultado.getString("cpf"));
+					cliente.setTelefone(resultado.getString("telefone"));
+					cliente.setEndereco(resultado.getString("endereco"));
+					return cliente;
+				}
+			} catch (SQLException ex) {
+				Logger.getLogger(ClienteDao.class.getName()).log(Level.SEVERE, null, ex);
+				}
+			return null;
+			}
 }

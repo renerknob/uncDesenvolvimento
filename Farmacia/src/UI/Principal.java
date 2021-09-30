@@ -18,6 +18,8 @@ import br.unc.rener.utils.EntidadeGenerica;
 
 public class Principal {
 	
+	private static ClienteDao clienteDao = new ClienteDao();
+	
 	public static void main(String array[]) {
 		montaTelaPrincipal();
 	}
@@ -61,10 +63,62 @@ public class Principal {
 			montaTelaPrincipal();
 		}
 		else if(op==1) {
-			irCadastroCliente();
+			menuCliente();
 		}
 		else if (op==2) {
 			irCadastroFuncionario();
+		}
+	}
+
+	private static void menuCliente() {
+		
+		System.out.println("\f CLIENTE\n\n\n");
+		System.out.println("1. INSERIR");
+		System.out.println("2. ALTERAR");
+		System.out.println("3. VOLTAR");
+		System.out.printf("Digite uma das opções acima: ");
+		Scanner s = new Scanner(System.in);
+		Integer op = s.nextInt();
+		if (op == 1) {
+			irCadastroCliente();
+		} else if (op == 2) {
+
+			alterarCliente();
+
+		} else if (op == 3) {
+			irMenuCadastro();
+		}
+	}
+
+	private static void alterarCliente() {
+
+		System.out.println("ALTERAÇAO DE CLIENTE \n");
+		System.out.println("DIGITE O ID DO CLIENTE: \n");
+		Scanner scanner = new Scanner(System.in);
+		int id = scanner.nextInt();
+		Cliente c = clienteDao.buscar(id);
+		System.out.println("O cliente a ser alterado é: \n" + c);
+		
+		System.out.printf("Nome: \n");
+		c.setNome(scanner.nextLine());
+		
+		System.out.printf("CPF: \n");
+		c.setCpf(scanner.nextLine());
+		System.out.printf("RG: \n");
+		c.setRg(scanner.nextLine());
+		System.out.printf("Telefone: \n");
+		c.setTelefone(scanner.nextLine());
+		System.out.printf("Endereco: \n");
+		c.setEndereco(scanner.nextLine());
+
+ 
+		clienteDao.alterar(c);
+
+		try {
+			Thread.sleep(2000);
+			montaTelaPrincipal();
+		} catch (InterruptedException e2) {
+			e2.printStackTrace();
 		}
 	}
 
@@ -101,13 +155,14 @@ public class Principal {
 		c.setCpf(scan.nextLine());
 		System.out.printf("Digite o RG:  \n");
 		c.setRg(scan.nextLine());
+		System.out.printf("Digite o Telefone:  \n");
+		c.setTelefone(scan.nextLine());
 		System.out.printf("Digite o Endereço:  \n");
 		c.setEndereco(scan.nextLine());
 		
 	//	EntidadeGenerica entidade = new EntidadeGenerica();
 	//	entidade.salvarEntidade(c, Cliente.ARQUIVO_SERIAL);
 		
-		ClienteDao clienteDao = new ClienteDao();
 		clienteDao.inserir(c);
 		
 		try {

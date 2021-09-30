@@ -5,6 +5,8 @@ import java.io.Serializable;
 public class Pessoa extends Persistencia implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
+	
+	private Integer id;
 	private String nome;
 	private String cpf;
 	private String rg;
@@ -55,6 +57,14 @@ public class Pessoa extends Persistencia implements Serializable {
 	@Override
 	public String toString() {
 		return this.nome + ";" + this.cpf + ";" + this.rg + ";" + this.endereco + "/n";
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 }
