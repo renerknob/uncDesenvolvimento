@@ -13,7 +13,8 @@ import javax.swing.JPanel;
 
 public class FrameSimples extends JFrame implements ActionListener {
 
-	private PainelCliente painelCliente;
+	private PainelCliente painelCliente;	
+	private PainelFuncionario painelFuncionario;
 
 	private JMenuBar barraMenu;
 	private JMenu cadastros;
@@ -30,10 +31,12 @@ public class FrameSimples extends JFrame implements ActionListener {
 		getContentPane().setLayout(new BorderLayout());
 		getContentPane().add(new BarraStatus(), BorderLayout.SOUTH);
 		painelCliente = new PainelCliente();
+		painelFuncionario = new PainelFuncionario();
 		barraMenu = new JMenuBar();
 		cadastros = new JMenu("Cadastros");
 		clienteMI = new JMenuItem("Cadastro de Cliente");
 		funcionarioMI = new JMenuItem("Cadastro de Funcionário");
+		funcionarioMI.addActionListener(this);
 		clienteMI.addActionListener(this);
 		cadastros.add(clienteMI);
 		cadastros.add(funcionarioMI);
@@ -76,7 +79,15 @@ public class FrameSimples extends JFrame implements ActionListener {
 			painelCliente.setVisible(true);
 			revalidate();
 			repaint();
-		} else if (e.getSource() == fecharMI) {
+		} else 	if (e.getSource() == funcionarioMI) {
+			getContentPane().remove(clienteMI);
+			System.out.println("pediu para inserir um funcionario");
+			getContentPane().add(painelFuncionario, BorderLayout.CENTER);
+			painelCliente.setVisible(true);
+			revalidate();
+			repaint();
+		}
+		else if (e.getSource() == fecharMI) {
 			System.exit(0);
 		}
 
