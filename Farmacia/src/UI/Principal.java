@@ -14,11 +14,13 @@ import java.util.Scanner;
 import br.unc.rener.Cliente;
 import br.unc.rener.Funcionario;
 import br.unc.rener.dao.ClienteDao;
+import br.unc.rener.dao.FuncionarioDao;
 import br.unc.rener.utils.EntidadeGenerica;
 
 public class Principal {
 	
 	private static ClienteDao clienteDao = new ClienteDao();
+	private static FuncionarioDao funcionarioDao = new FuncionarioDao();
 	
 	public static void main(String array[]) {
 		montaTelaPrincipal();
@@ -202,6 +204,8 @@ public class Principal {
 		
 	//	ClienteDao clienteDao = new ClienteDao();
 	//	clienteDao.inserir(c);
+		
+		funcionarioDao.inserir(f);
 		
 		try {
 			Thread.sleep(2000);
