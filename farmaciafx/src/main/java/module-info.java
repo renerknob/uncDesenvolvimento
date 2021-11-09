@@ -3,6 +3,6 @@ module br.unc.rener.farmaciafx {
     requires javafx.fxml;
     requires java.sql;
 
-    opens br.unc.rener.farmaciafx to javafx.fxml;
+    opens br.unc.rener.farmaciafx.controller to javafx.fxml;
     exports br.unc.rener.farmaciafx;
 }
